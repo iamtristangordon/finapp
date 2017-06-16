@@ -1,0 +1,69 @@
+header {
+    padding: 15px 30px;
+    overflow: hidden;
+}
+
+header h2 {
+    padding: 0;
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: #F5CE28;
+}
+
+header h2 a {
+    color: #F5CE28;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+button {
+    padding: 8px 15px;
+    background: #F5CE28;
+    border: none;
+    border-radius: 3px;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    margin-left: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button.white {
+    background: white;
+    border: 1px solid #F5CE28;
+    color: #F5CE28;
+}
+
+a {
+    display: inline-block;
+}
+
+footer {
+    padding: 15px 30px;
+    max-height: 100px;
+    height: 100%;
+    text-align: center;
+    color: #F5CE28;
+}
+
+.table {
+    display: table;
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.cell {
+    display: table-cell;
+    vertical-align: middle;
+}
