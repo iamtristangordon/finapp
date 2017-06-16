@@ -18,7 +18,7 @@ header h2 {
     -o-background-size: cover;
     background-size: cover;
     width: 100%;
-	max-height: 600px;
+	padding:60px 0px;
 	height: 100%;
     border-top: #ddd solid 1px;
     border-bottom: #ddd solid 1px;

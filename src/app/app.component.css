@@ -34,6 +34,10 @@ button {
     margin-left: 10px;
 }
 
+button:focus {
+    outline-color: #F5CE28;
+}
+
 button:hover {
     cursor: pointer;
 }
