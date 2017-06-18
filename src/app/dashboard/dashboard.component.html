@@ -1,25 +1,36 @@
 <div class="hero">
-  <div class="table">
-    <div class="cell">
-      <div class="login">
-        <md-card class="example-card">
-          <md-card-header>
-            <md-card-title>Shiba Inu</md-card-title>
-            <md-card-subtitle>Dog Breed</md-card-subtitle>
-          </md-card-header>
-          <md-card-content>
-            <p>
-              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-              A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-              bred for hunting.
-            </p>
-          </md-card-content>
-          <md-card-actions>
-            <button md-button>LIKE</button>
-            <button md-button>SHARE</button>
-          </md-card-actions>
-        </md-card>
-      </div>
+  <div class="dashboard" fxLayout="row" fxLayoutWrap="wrap">
+    <div class="card-container" fxFlex="50%" [fxFlex.md]="(100 / 2)" [fxFlex.sm]="(100 / 2) - 2" fxFlex.lt-sm="100%">
+      <md-card class="example-card">
+        <md-card-content>
+          <md-progress-spinner
+            class="example-margin"
+            [color]="warn"
+            [mode]="indeterminate"
+            [value]="100">
+          </md-progress-spinner>
+        </md-card-content>
+        <h2>Budgets</h2>
+        <md-card-actions>
+          <a md-raised-button routerLink="/budgets" color="accent">Open</a>
+        </md-card-actions>
+      </md-card>
+    </div>
+    <div class="card-container" fxFlex="50%" [fxFlex.md]="(100 / 2)" [fxFlex.sm]="(100 / 2) - 2" fxFlex.lt-sm="100%">
+      <md-card class="example-card">
+        <md-card-content>
+          <md-progress-spinner
+            class="example-margin"
+            [color]="warn"
+            [mode]="indeterminate"
+            [value]="70">
+          </md-progress-spinner>
+        </md-card-content>
+        <h2>Goals</h2>
+        <md-card-actions>
+          <a md-raised-button routerLink="/goals" color="accent">Open</a>
+        </md-card-actions>
+      </md-card>
     </div>
   </div>
 </div>
