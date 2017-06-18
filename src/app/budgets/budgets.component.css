@@ -1,0 +1,163 @@
+header {
+    padding: 15px 30px;
+    overflow: hidden;
+}
+
+header h2 {
+    padding: 0;
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: #F5CE28;
+}
+
+.hero {
+    background: white;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+	padding:120px 0px;
+    border-top: #ddd solid 1px;
+    border-bottom: #ddd solid 1px;
+}
+
+.table {
+    display: table;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.cell h1 {
+    font-weight: 900;
+    font-size: 50px;
+    margin: 0;
+    color: white;
+}
+
+.cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.login {
+    max-width: 400px;
+    width:100%;
+    margin: 0 auto;
+}
+
+form input {
+    width: 100%;
+    margin-bottom: 18px;
+    height: 50px;
+    border-radius: 3px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 12px;
+    color: #888;
+    font-size: 14px;
+}
+
+form input:focus {
+    outline: none !important;
+}
+
+form input[type="text"] {
+    border: 1px #ddd solid;
+}
+
+form input[type="text"]:focus {
+    border: 1px solid #F5CE28;
+}
+
+form input[type="submit"] {
+    background: #F5CE28;
+    color: white;
+    font-size: 14px;
+    border: none;
+    text-transform: uppercase;
+}
+
+button {
+    padding: 8px 15px;
+    background: #F5CE28;
+    border: none;
+    border-radius: 5px;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    margin-left: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button.white {
+    background: white;
+    border: 1px solid #F5CE28;
+    color: #F5CE28;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+sub {
+    font-size: 11px;
+}
+
+a {
+    display: block;
+}
+
+.budgets {
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.budgets h2 {
+    color: black;
+    font-weight: 400;
+}
+
+.budget-container {
+    padding: 0%;
+    text-align: center;
+}
+
+.mat-card {
+    text-align: center;
+    padding: 40px 24px 60px;
+}
+
+.mat-card-header-text {
+    width: 100%;
+}
+
+.mat-progress-spinner {
+    margin: 0 auto;
+}
+
+a {
+    display: inline-block;
+    margin: 25px 0;
+    color: white !important;
+}
+
+.mat-card-header-text {
+    margin: 0 auto !important;
+}
+
+.example-card h2 {
+    margin: 0;
+    font-weight: 400;
+}
