@@ -5,8 +5,8 @@ var bcrypt = require('bcryptjs');
 var Q = require('q');
 var mongo = require('mongoskin');
 
-var dbUrl = process.env.NODE_ENV === 'production' ? config.prodConnectionString : config.connectionString;
-console.log(dbUrl);
+var dbUrl = (process.env.NODE_ENV === 'production') ? config.prodConnectionString : config.connectionString;
+console.log('DATABASE URL STRING: ' + dbUrl);
 var db = mongo.db(dbUrl, { native_parser: true });
 db.bind('users');
  
