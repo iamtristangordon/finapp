@@ -17,6 +17,21 @@ app.use(express.static(__dirname + '/../../dist'));
 
 console.log(__dirname + '/../../dist');
 
+const forceSSL = function() {
+  return function (req, res, next) {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+      return res.redirect(
+       ['https://', req.get('Host'), req.url].join('')
+      );
+    }
+    next();
+  }
+}
+// Instruct the app
+// to use the forceSSL
+// middleware
+app.use(forceSSL());
+
 // use JWT auth to secure the api, the token can be passed in the authorization header or querystring
 app.use(expressJwt({
     secret: config.secret,
