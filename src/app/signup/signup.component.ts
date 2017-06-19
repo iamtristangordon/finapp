@@ -17,8 +17,8 @@ export class SignupComponent implements OnInit {
     budgets: Array<Budget> = [];
  
     constructor(
-        public router: Router,
-        public userService: UserService) { }
+        private router: Router,
+        private userService: UserService) { }
 
     ngOnInit(): void {
         this.model.budgets = this.budgets;

@@ -17,9 +17,9 @@ export class BudgetDetailComponent implements OnInit {
   budget: any;
 
   constructor(
-  public userService: UserService,
-  public route: ActivatedRoute,
-  public location: Location
+  private userService: UserService,
+  private route: ActivatedRoute,
+  private location: Location
 ) {}
 
   ngOnInit() {
