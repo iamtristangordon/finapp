@@ -17,8 +17,8 @@ export class BudgetsComponent implements OnInit {
   currentUser = JSON.parse(localStorage.currentUser);
 
   constructor(
-    private userService: UserService,
-    private router: Router) { }
+    public userService: UserService,
+    public router: Router) { }
 
   ngOnInit() {
     this.getBudgets();

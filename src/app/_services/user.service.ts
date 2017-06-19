@@ -6,7 +6,7 @@ import { Budget } from '../_models/budget';
  
 @Injectable()
 export class UserService {
-    constructor(private http: Http) { }
+    constructor(public http: Http) { }
  
     getAll() {
         return this.http.get('/users').map((response: Response) => response.json());

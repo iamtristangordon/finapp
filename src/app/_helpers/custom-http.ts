@@ -29,9 +29,9 @@ export class CustomHttp extends Http {
         return super.delete(appConfig.apiUrl + url, this.addJwt(options)).catch(this.handleError);
     }
  
-    // private helper methods
+    // public helper methods
  
-    private addJwt(options?: RequestOptionsArgs): RequestOptionsArgs {
+    public addJwt(options?: RequestOptionsArgs): RequestOptionsArgs {
         // ensure request options and headers are not null
         options = options || new RequestOptions();
         options.headers = options.headers || new Headers();
@@ -45,7 +45,7 @@ export class CustomHttp extends Http {
         return options;
     }
  
-    private handleError(error: any) {
+    public handleError(error: any) {
         if (error.status === 401) {
             // 401 unauthorized response so log user out of client
             window.location.href = '/login';
