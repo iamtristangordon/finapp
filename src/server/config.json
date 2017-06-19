@@ -1,5 +1,6 @@
 {
     "connectionString": "mongodb://localhost:27017/finapp-db",
+    "prodConnenctionString": "mongodb://heroku_fhzl0wlj:hkkg4fkoq43lloukfevfn5sdc@ds115411.mlab.com:15411/heroku_fhzl0wlj",
     "apiUrl": "http://localhost:4000",
     "secret": "Tristan is awesome!"
 }
