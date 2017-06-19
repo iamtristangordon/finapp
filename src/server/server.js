@@ -15,6 +15,8 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/dist'));
 
+console.log(__dirname + '../dist');
+
 // use JWT auth to secure the api, the token can be passed in the authorization header or querystring
 app.use(expressJwt({
     secret: config.secret,
@@ -26,7 +28,7 @@ app.use(expressJwt({
         }
         return null;
     }
-}).unless({ path: ['/users/authenticate', '/users/register', '/', '/login'] }));
+}).unless({ path: ['/users/authenticate', '/users/register', '/', '/login'] })); 
 
 // routes
 app.use('/users', require('./controllers/users.controller'));
