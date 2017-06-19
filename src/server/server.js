@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/dist'));
 
-console.log(__dirname + '../dist');
+console.log(__dirname + '/../../dist');
 
 // use JWT auth to secure the api, the token can be passed in the authorization header or querystring
 app.use(expressJwt({
