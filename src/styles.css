@@ -29,3 +29,9 @@ a {
 	color: white;
 	text-decoration: none;
 }
+
+.white {
+    background: white !important;
+    border: 1px solid #F5CE28 !important;
+    color: #F5CE28 !important;
+}

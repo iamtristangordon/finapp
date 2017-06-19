@@ -19,6 +19,7 @@ import { AuthGuard } from './_guards/auth.guard';
 
 import {AuthenticationService } from './_services/authentication.service';
 import {UserService } from './_services/user.service';
+import { BudgetDetailComponent } from './budget-detail/budget-detail.component';
 
 @NgModule({
   declarations: [
@@ -28,16 +29,17 @@ import {UserService } from './_services/user.service';
     SignupComponent,
     DashboardComponent,
     BudgetsComponent,
-    GoalsComponent
+    GoalsComponent,
+    BudgetDetailComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FlexLayoutModule,
     MaterialModule,
     FormsModule,
     HttpModule,
-    BrowserAnimationsModule 
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
   providers: [
     customHttpProvider,

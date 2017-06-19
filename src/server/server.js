@@ -5,6 +5,9 @@ var cors = require('cors');
 var bodyParser = require('body-parser');
 var expressJwt = require('express-jwt');
 var config = require('config.json');
+var morgan = require('morgan');
+
+app.use(morgan('dev'));
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));

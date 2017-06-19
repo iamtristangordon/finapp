@@ -10,18 +10,22 @@ router.get('/', getAll);
 router.get('/current', getCurrent);
 router.put('/:_id', update);
 router.delete('/:_id', _delete);
+router.get('/:_id', getOne);
+router.post('/budget/:_id', addBudget);
+router.delete('/budget/:_id/:budgetId', removeBudget);
+router.get('/budget/:id', getBudget);
  
 module.exports = router;
  
 function authenticate(req, res) {
-    userService.authenticate(req.body.username, req.body.password)
+    userService.authenticate(req.body.email, req.body.password)
         .then(function (user) {
             if (user) {
                 // authentication successful
                 res.send(user);
             } else {
                 // authentication failed
-                res.status(400).send('Username or password is incorrect');
+                res.status(400).send('email or password is incorrect');
             }
         })
         .catch(function (err) {
@@ -48,8 +52,24 @@ function getAll(req, res) {
             res.status(400).send(err);
         });
 }
+
+function getOne(req, res) {
+    console.log(req.params._id);
+    userService.getById(req.params._id)
+        .then(function (user) {
+            if (user) {
+                res.send(user);
+            } else {
+                res.sendStatus(404);
+            }
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
  
 function getCurrent(req, res) {
+    console.log(req.user.sub);
     userService.getById(req.user.sub)
         .then(function (user) {
             if (user) {
@@ -81,4 +101,40 @@ function _delete(req, res) {
         .catch(function (err) {
             res.status(400).send(err);
         });
+}
+
+function addBudget(req, res) {
+    userService.addBudget(req.params._id, req.body)
+        .then(function () {
+            res.sendStatus(200);
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
+function removeBudget(req, res) {
+    userService.removeBudget(req.params._id, req.params.budgetId)
+        .then(function () {
+            res.sendStatus(200);
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
+function getBudget(req, res) {
+    userService.getBudget()
+        .then(function (budget) {
+            if (budget) {
+                console.log(budget);
+                res.send(budget);
+            } else {
+                res.sendStatus(404);
+            }
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+
 }
