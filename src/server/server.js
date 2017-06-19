@@ -50,4 +50,7 @@ app.use('/users', require('./controllers/users.controller'));
 
 // start server
 var port = process.env.NODE_ENV === 'production' ? 80 : 4000;
+
+console.log("***************************PORT: " + process.env.PORT);
+
 app.listen(process.env.PORT || 8080);
