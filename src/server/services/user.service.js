@@ -15,20 +15,23 @@ service.getById = getById;
 service.create = create;
 service.update = update;
 service.delete = _delete;
+service.addBudget = addBudget;
+service.removeBudget = removeBudget;
+service.getBudget = getBudget;
  
 module.exports = service;
  
-function authenticate(username, password) {
+function authenticate(email, password) {
     var deferred = Q.defer();
  
-    db.users.findOne({ username: username }, function (err, user) {
+    db.users.findOne({ email: email }, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
  
         if (user && bcrypt.compareSync(password, user.hash)) {
             // authentication successful
             deferred.resolve({
                 _id: user._id,
-                username: user.username,
+                email: user.email,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 token: jwt.sign({ sub: user._id }, config.secret)
@@ -41,7 +44,31 @@ function authenticate(username, password) {
  
     return deferred.promise;
 }
- 
+
+function getBudget (_id) {
+    var deferred = Q.defer();
+
+
+    db.users.aggregate([
+        {$match: {'budgets._id': _id}},
+        {$project: {
+            budgets: {$filter: {
+                input: '$budgets',
+                as: 'budget',
+                cond: {$eq: ['$$budget._id',_id]}
+            }},
+            _id: 1
+        }}
+    ],function (err, budget){
+        console.log(budget);
+        if (err) deferred.reject(err.name + ': ' + err.message);
+        
+        deferred.resolve(budget);
+    })
+
+    return deferred.promise;
+}
+
 function getAll() {
     var deferred = Q.defer();
  
@@ -82,13 +109,13 @@ function create(userParam) {
  
     // validation
     db.users.findOne(
-        { username: userParam.username },
+        { email: userParam.email },
         function (err, user) {
             if (err) deferred.reject(err.name + ': ' + err.message);
  
             if (user) {
-                // username already exists
-                deferred.reject('Username "' + userParam.username + '" is already taken');
+                // email already exists
+                deferred.reject('email "' + userParam.email + '" is already taken');
             } else {
                 createUser();
             }
@@ -120,16 +147,16 @@ function update(_id, userParam) {
     db.users.findById(_id, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
  
-        if (user.username !== userParam.username) {
-            // username has changed so check if the new username is already taken
+        if (user.email !== userParam.email) {
+            // email has changed so check if the new email is already taken
             db.users.findOne(
-                { username: userParam.username },
+                { email: userParam.email },
                 function (err, user) {
                     if (err) deferred.reject(err.name + ': ' + err.message);
  
                     if (user) {
-                        // username already exists
-                        deferred.reject('Username "' + req.body.username + '" is already taken')
+                        // email already exists
+                        deferred.reject('email "' + req.body.email + '" is already taken')
                     } else {
                         updateUser();
                     }
@@ -144,7 +171,7 @@ function update(_id, userParam) {
         var set = {
             firstName: userParam.firstName,
             lastName: userParam.lastName,
-            username: userParam.username,
+            email: userParam.email,
         };
  
         // update password if it was entered
@@ -155,6 +182,65 @@ function update(_id, userParam) {
         db.users.update(
             { _id: mongo.helper.toObjectID(_id) },
             { $set: set },
+            function (err, doc) {
+                if (err) deferred.reject(err.name + ': ' + err.message);
+ 
+                deferred.resolve();
+            });
+    }
+ 
+    return deferred.promise;
+}
+
+function addBudget(_id, budgetParam) {
+    var deferred = Q.defer();
+ 
+    
+    updateBudgets();
+ 
+    function updateBudgets() {
+        var timestamp = new Date().getTime();
+
+        var budgetId = "" + _id  + timestamp;
+
+        var budgetObj = {
+            budgets: {
+                _id: budgetId,
+                name: budgetParam.budgetName,
+                expenses: [],
+                income: []
+            }
+        };
+
+        db.users.update(
+            { _id: mongo.helper.toObjectID(_id) },
+            { $addToSet: budgetObj },
+            function (err, doc) {
+                if (err) deferred.reject(err.name + ': ' + err.message);
+ 
+                deferred.resolve();
+            });
+    }
+ 
+    return deferred.promise;
+}
+
+function removeBudget(_id, budgetId) {
+    var deferred = Q.defer();
+ 
+    
+    updateBudgets();
+ 
+    function updateBudgets() {
+        var id = {
+            "budgets" : {
+                _id: budgetId
+            }
+        };
+
+        db.users.update(
+            { _id: mongo.helper.toObjectID(_id) },
+            { $pull: id },
             function (err, doc) {
                 if (err) deferred.reject(err.name + ': ' + err.message);
  
