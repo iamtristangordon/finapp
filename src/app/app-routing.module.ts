@@ -18,7 +18,8 @@ const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent,canActivate: [AuthGuard] },
     { path: 'budgets', component: BudgetsComponent, canActivate: [AuthGuard] },
     { path: 'goals', component: GoalsComponent, canActivate: [AuthGuard] },
-    { path: 'detail/:id', component: BudgetDetailComponent } 
+    { path: 'detail/:id', component: BudgetDetailComponent },
+    { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
