@@ -1,3 +1,3 @@
 export const appConfig = {
-    apiUrl: 'https://localhost:80'
+    apiUrl: 'https://localhost:4000'
 };
