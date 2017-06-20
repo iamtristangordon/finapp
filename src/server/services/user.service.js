@@ -51,14 +51,17 @@ function authenticate(email, password) {
 function getBudget (_id) {
     var deferred = Q.defer();
 
+    var ObjectID = mongo.ObjectID;
+
+    console.log(new ObjectID(_id));
 
     db.users.aggregate([
-        {$match: {'budgets._id': _id}},
+        {$match: {'budgets._id':  new ObjectID(_id)}},
         {$project: {
             budgets: {$filter: {
                 input: '$budgets',
                 as: 'budget',
-                cond: {$eq: ['$$budget._id',_id]}
+                cond: {$eq: ['$$budget._id',  new ObjectID(_id)]}
             }},
             _id: 1
         }}
@@ -204,11 +207,11 @@ function addBudget(_id, budgetParam) {
     function updateBudgets() {
         var timestamp = new Date().getTime();
 
-        var budgetId = "" + _id  + timestamp;
+        var ObjectID = mongo.ObjectID;
 
         var budgetObj = {
             budgets: {
-                _id: budgetId,
+                _id: new ObjectID(),
                 name: budgetParam.budgetName,
                 expenses: [],
                 income: []
@@ -230,14 +233,15 @@ function addBudget(_id, budgetParam) {
 
 function removeBudget(_id, budgetId) {
     var deferred = Q.defer();
- 
+    
+    var ObjectID = mongo.ObjectID;
     
     updateBudgets();
  
     function updateBudgets() {
         var id = {
             "budgets" : {
-                _id: budgetId
+                _id: new ObjectID(budgetId)
             }
         };
 
