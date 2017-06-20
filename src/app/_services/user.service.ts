@@ -3,6 +3,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
  
 import { User } from '../_models/user';
 import { Budget } from '../_models/budget';
+import { Expense } from '../_models/expense';
  
 @Injectable()
 export class UserService {
@@ -34,12 +35,20 @@ export class UserService {
         return this.http.post('/users/budget/' + _id, budget);
     }
 
-    deleteBudget(_id: string, budgetId) {
+    deleteBudget(_id: string, budgetId:string) {
         return this.http.delete('/users/budget/' + _id + '/' + budgetId);
     }
 
     getBudget(_id: string) {
         console.log(_id);
         return this.http.get('/users/budget/' + _id).map((response: Response) => response.json());
+    }
+
+    addExpense(_id: string, budgetId:string, expense: Expense) {
+        return this.http.post('/users/expense/' + _id + '/' + budgetId, expense);
+    }
+
+    deleteExpense(_id: string, expenseId:string, budgetId:string) {
+        return this.http.delete('/users/expense/' + _id + '/' + expenseId + '/' + budgetId);
     }
 }

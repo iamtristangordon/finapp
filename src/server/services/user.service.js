@@ -5,6 +5,8 @@ var bcrypt = require('bcryptjs');
 var Q = require('q');
 var mongo = require('mongoskin');
 
+var ObjectID = mongo.ObjectID;
+
 var dbUrl = (process.env.NODE_ENV === 'production') ? config.prodConnectionString : config.connectionString;
 
 var db = mongo.db(dbUrl, { native_parser: true });
@@ -21,6 +23,8 @@ service.delete = _delete;
 service.addBudget = addBudget;
 service.removeBudget = removeBudget;
 service.getBudget = getBudget;
+service.addExpense = addExpense;
+service.removeExpense = removeExpense;
  
 module.exports = service;
  
@@ -51,7 +55,7 @@ function authenticate(email, password) {
 function getBudget (_id) {
     var deferred = Q.defer();
 
-    var ObjectID = mongo.ObjectID;
+    
 
     console.log(new ObjectID(_id));
 
@@ -207,7 +211,7 @@ function addBudget(_id, budgetParam) {
     function updateBudgets() {
         var timestamp = new Date().getTime();
 
-        var ObjectID = mongo.ObjectID;
+        
 
         var budgetObj = {
             budgets: {
@@ -232,9 +236,7 @@ function addBudget(_id, budgetParam) {
 }
 
 function removeBudget(_id, budgetId) {
-    var deferred = Q.defer();
-    
-    var ObjectID = mongo.ObjectID;
+    var deferred = Q.defer();  
     
     updateBudgets();
  
@@ -257,7 +259,59 @@ function removeBudget(_id, budgetId) {
  
     return deferred.promise;
 }
- 
+
+function addExpense(_id, budgetId, expenseParams) {
+    var deferred = Q.defer();
+
+    updateExpenses();
+
+    function updateExpenses() {
+        var expenseObj = {
+            "budgets.$.expenses": 
+                {
+                    _id: new ObjectID(),
+                    where: expenseParams.where,
+                    amount: expenseParams.amount,
+                    what: expenseParams.what
+                }
+        }
+        db.users.update(
+            { _id: mongo.helper.toObjectID(_id), "budgets._id": mongo.helper.toObjectID(budgetId)},
+            { 
+                $addToSet: expenseObj},
+            function (err, doc){
+                if (err) deferred.reject(err.name + ': ' + err.message);
+
+                deferred.resolve();
+            });
+    }
+
+    return deferred.promise;
+}
+
+function removeExpense(_id, expenseId, budgetId) {
+    var deferred = Q.defer();
+
+    updateExpense();
+
+    function updateExpense() {
+    db.users.update(
+        { _id: mongo.helper.toObjectID(_id), "budgets._id": mongo.helper.toObjectID(budgetId) },
+            { $pull: {
+            "budgets.$.expenses" : {
+                _id: new ObjectID(expenseId)
+            }
+        } },
+        function (err, doc) {
+            if (err) deferred.reject(err.name + ': ' + err.message);
+
+            deferred.resolve();
+        });
+    }
+
+    return deferred.promise;
+}
+
 function _delete(_id) {
     var deferred = Q.defer();
  

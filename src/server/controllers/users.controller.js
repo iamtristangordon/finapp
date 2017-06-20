@@ -14,6 +14,8 @@ router.get('/:_id', getOne);
 router.post('/budget/:_id', addBudget);
 router.delete('/budget/:_id/:budgetId', removeBudget);
 router.get('/budget/:_id', getBudget);
+router.post('/expense/:_id/:budgetId', addExpense);
+router.delete('/expense/:_id/:budgetId/:expenseId', removeExpense);
  
 module.exports = router;
  
@@ -136,5 +138,24 @@ function getBudget(req, res) {
         .catch(function (err) {
             res.status(400).send(err);
         });
+}
 
+function addExpense(req, res) {
+    userService.addExpense(req.params._id, req.params.budgetId, req.body)
+        .then(function () {
+            res.sendStatus(200);
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
+function removeExpense(req, res) {
+    userService.removeExpense(req.params._id, req.params.budgetId, req.params.expenseId)
+        .then(function () {
+            res.sendStatus(200);
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
 }
