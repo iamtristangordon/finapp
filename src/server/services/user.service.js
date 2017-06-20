@@ -289,7 +289,7 @@ function addExpense(_id, budgetId, expenseParams) {
     return deferred.promise;
 }
 
-function removeExpense(_id, budgetId, expenseId) {
+function removeExpense(_id, expenseId, budgetId) {
     var deferred = Q.defer();
 
     updateExpense();
