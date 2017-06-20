@@ -49,10 +49,5 @@ app.use(expressJwt({
 app.use('/users', require('./controllers/users.controller'));
 
 // start server
-var port = process.env.NODE_ENV === 'production' ? 4000 : 4000;
 
-console.log("***************************PORT: " + port);
-
-app.listen(port, function() {
-    console.log('Server listening on port ' + port);
-});
+app.listen(process.env.PORT || 8080);
