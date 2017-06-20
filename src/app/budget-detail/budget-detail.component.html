@@ -1,3 +1,74 @@
-<p>
-  {{budget}}
-</p>
+<div class="hero">
+  
+  <div class="budget" fxLayout="row">
+    <div class="title">
+      <h1>{{budget?.name}}</h1>
+      <div class="expenses">
+        <div class="expense" fxLayout="row">
+          <div class="left" [fxFlex]="(50 - 2)" [fxFlex.md]="(50 - 2)" fxFlex.sm="100%" fxFlex.lt-sm="100%">
+            <p>-</p>
+            <p >Phone Bill (Verizon Wireless)</p>
+          </div>
+          <div class="right" [fxFlex]="(50 - 2)" [fxFlex.md]="(50 - 2)" fxFlex.sm="100%" fxFlex.lt-sm="100%">
+            <p>amount</p>
+            <span 
+              md-button
+              class="delete" 
+              style="color:red !important">
+              X
+            </span>
+          </div>
+        </div>
+        <div class="expense" fxLayout=
+        "row">
+          <div class="left" [fxFlex]="(50 - 2)" [fxFlex.md]="(50 - 2)" fxFlex.sm="100%" fxFlex.lt-sm="100%">
+            <p>-</p>
+            <p>Phone Bill (Verizon Wireless)</p>
+          </div>
+          <div class="right" [fxFlex]="(50 - 2)" [fxFlex.md]="(50 - 2)" fxFlex.sm="100%" fxFlex.lt-sm="100%">
+            <p>amount</p>
+            <span 
+              md-button
+              class="delete" 
+              style="color:red !important">
+              X
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="income">
+        <div class="single-income" fxLayout="row">
+          <div class="left" [fxFlex]="(50 - 2)" [fxFlex.md]="(50 - 2)" fxFlex.sm="100%" fxFlex.lt-sm="100%">
+            <p>-</p>
+            <p >Work Paycheck</p>
+          </div>
+          <div class="right" [fxFlex]="(50 - 2)" [fxFlex.md]="(50 - 2)" fxFlex.sm="100%" fxFlex.lt-sm="100%">
+            <p>amount</p>
+            <span 
+              md-button
+              class="delete" 
+              style="color:red !important">
+              X
+            </span>
+          </div>
+        </div>
+        <div class="single-income" fxLayout=
+        "row">
+          <div class="left" [fxFlex]="(50 - 2)" [fxFlex.md]="(50 - 2)" fxFlex.sm="100%" fxFlex.lt-sm="100%">
+            <p>-</p>
+            <p>Work Paycheck</p>
+          </div>
+          <div class="right" [fxFlex]="(50 - 2)" [fxFlex.md]="(50 - 2)" fxFlex.sm="100%" fxFlex.lt-sm="100%">
+            <p>amount</p>
+            <span 
+              md-button
+              class="delete" 
+              style="color:red !important">
+              X
+            </span>
+          </div>
+        </div>
+      </div>
+    <div>
+  </div>
+</div>

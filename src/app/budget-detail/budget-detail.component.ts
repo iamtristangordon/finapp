@@ -27,8 +27,8 @@ export class BudgetDetailComponent implements OnInit {
       .switchMap((params: Params) => this.userService.getBudget(params['id']))
         .subscribe(
           data => {
-            console.log(data);
-            this.budget = data;
+            console.log(data[0].budgets[0]);
+            this.budget = data[0].budgets[0];
           }
         )
   }

@@ -15,7 +15,7 @@
       </form>
     </div>
   </div>
-  <div class="budgets" fxLayout="row" *ngFor="let b of allBudgets">
+  <div class="budgets" fxLayout="row" *ngFor="let b of allBudgets" fxLayoutWrap>
     <div class="budget-container" [fxFlex]="(20 - 2)" [fxFlex.md]="(100 / 3) - 1" fxFlex.sm="100%" fxFlex.lt-sm="100%">
       <md-progress-spinner
         class="example-margin"
@@ -32,7 +32,6 @@
       <button 
         md-button
         class="delete" 
-        *ngIf="b._id !== undefined" 
         style="color:red !important" 
         (click)="deleteBudget(currentUser._id, b._id)">
         Delete
