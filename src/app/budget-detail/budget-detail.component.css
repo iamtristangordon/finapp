@@ -53,6 +53,10 @@ p {
     font-family: 'Open Sans', sans-serif;
 }
 
+.button-container {
+    margin: 0 auto;
+}
+
 .button-container > button {
     margin-right: 10px;
     margin-bottom: 10px;
