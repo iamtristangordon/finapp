@@ -56,6 +56,8 @@ p {
 .button-container > button {
     margin-right: 10px;
     margin-bottom: 10px;
+    float: left;
+    border: none;
 }
 
 .total-container h2 {
