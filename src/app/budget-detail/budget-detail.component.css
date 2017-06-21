@@ -57,7 +57,7 @@ p {
     margin-right: 10px;
     margin-bottom: 10px;
     float: left;
-    border: none;
+    border: none !important;
 }
 
 .total-container h2 {
