@@ -32,6 +32,8 @@ export class SignupComponent implements OnInit {
  
     register() {
         this.loading = true;
+        this.model.email = this.model.email.toLowerCase();
+        console.log(this.model.email);
         this.userService.create(this.model)
             .subscribe(
                 data => {
