@@ -49,6 +49,6 @@ export class UserService {
     }
 
     deleteExpense(_id: string, expenseId:string, budgetId:string) {
-        return this.http.delete('/users/expense/' + _id + '/' + expenseId + '/' + budgetId);
+        return this.http.delete('/users/expense/' + _id + '/' + budgetId + '/' + expenseId);
     }
 }
