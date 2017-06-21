@@ -13,9 +13,6 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(express.static(__dirname + '/../../dist'));
-
-console.log(__dirname + '/../../dist');
 
 const forceSSL = function() {
   return function (req, res, next) {
@@ -31,6 +28,8 @@ const forceSSL = function() {
 // to use the forceSSL
 // middleware
 app.use(forceSSL());
+
+app.use(express.static(__dirname + '/../../dist'));
 
 // use JWT auth to secure the api, the token can be passed in the authorization header or querystring
 app.use(expressJwt({

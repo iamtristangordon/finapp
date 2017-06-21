@@ -52,3 +52,7 @@ p {
     display:inline-block;
     font-family: 'Open Sans', sans-serif;
 }
+
+.button-container > button {
+    margin-right: 10px;
+}

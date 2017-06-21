@@ -19,7 +19,7 @@ const routes: Routes = [
     { path: 'budgets', component: BudgetsComponent, canActivate: [AuthGuard] },
     { path: 'goals', component: GoalsComponent, canActivate: [AuthGuard] },
     { path: 'detail/:id', component: BudgetDetailComponent },
-    { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: '/dashboard' }
 ];
 
 @NgModule({

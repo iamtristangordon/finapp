@@ -4,6 +4,7 @@ import { Location }                 from '@angular/common';
 
 import { Budget } from '../_models/budget';
 import { Expense } from '../_models/expense';
+import { Income } from '../_models/income';
 
 import { UserService } from '../_services/user.service';
 
@@ -17,10 +18,14 @@ import 'rxjs/add/operator/switchMap';
 export class BudgetDetailComponent implements OnInit {
   budget: any;
   model:any = {};
-  showAdd = false;
+  modelTwo: any = {};
+  showAddExpense = false;
+  showAddIncome = false;
+  showButtons = true;
   currentUser = JSON.parse(localStorage.currentUser);
 
   allExpenses: Array<Expense>; 
+  allIncome: Array<Income>;
 
   constructor(
   private userService: UserService,
@@ -33,11 +38,10 @@ export class BudgetDetailComponent implements OnInit {
       .switchMap((params: Params) => this.userService.getBudget(params['id']))
         .subscribe(
           data => {
-            console.log(data[0].budgets[0]);
             this.budget = data[0].budgets[0];
 
             this.allExpenses = data[0].budgets[0].expenses;
-            console.log(this.allExpenses);
+            this.allIncome = data[0].budgets[0].income;
           }
         )
   }
@@ -48,7 +52,16 @@ export class BudgetDetailComponent implements OnInit {
         .subscribe(
           data => {
             this.allExpenses = data[0].budgets[0].expenses;
-            console.log(this.allExpenses);
+          }
+        )
+  }
+
+  getIncome() {
+    this.route.params
+      .switchMap((params: Params) => this.userService.getBudget(params['id']))
+        .subscribe(
+          data => {
+            this.allIncome = data[0].budgets[0].income;
           }
         )
   }
@@ -66,14 +79,44 @@ export class BudgetDetailComponent implements OnInit {
       );
     
     this.model = {};
-    this.showAdd = false;
+    this.showAddExpense = false;
+    this.showButtons = true;
+  }
+
+  addIncome() {
+    this.route.params
+      .switchMap((params: Params) => this.userService.addIncome(this.currentUser._id,params['id'], this.modelTwo))
+      .subscribe(
+        data => {
+          this.getIncome();
+        },
+        error => {
+
+        }
+      );
+    
+    this.modelTwo = {};
+    this.showAddIncome = false;
+    this.showButtons = true;
   }
 
   deleteExpense(expenseId, budgetId) {
-    this.userService.deleteExpense(this.currentUser._id, expenseId, budgetId)
+    this.userService.deleteExpense(this.currentUser._id, budgetId, expenseId)
       .subscribe(
         data => {
           this.getExpenses();
+        },
+        error => {
+
+        }
+      );
+  }
+
+  deleteIncome(incomeId, budgetId) {
+    this.userService.deleteIncome(this.currentUser._id, budgetId, incomeId)
+      .subscribe(
+        data => {
+          this.getIncome();
         },
         error => {
 

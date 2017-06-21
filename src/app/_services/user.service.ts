@@ -48,7 +48,15 @@ export class UserService {
         return this.http.post('/users/expense/' + _id + '/' + budgetId, expense);
     }
 
-    deleteExpense(_id: string, expenseId:string, budgetId:string) {
+    deleteExpense(_id: string, budgetId:string, expenseId:string) {
         return this.http.delete('/users/expense/' + _id + '/' + budgetId + '/' + expenseId);
+    }
+
+    addIncome(_id: string, budgetId:string, income: Expense) {
+        return this.http.post('/users/income/' + _id + '/' + budgetId, income);
+    }
+
+    deleteIncome(_id: string, budgetId:string, incomeId:string) {
+        return this.http.delete('/users/income/' + _id + '/' + budgetId + '/' + incomeId);
     }
 }

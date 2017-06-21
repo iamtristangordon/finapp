@@ -25,6 +25,8 @@ service.removeBudget = removeBudget;
 service.getBudget = getBudget;
 service.addExpense = addExpense;
 service.removeExpense = removeExpense;
+service.addIncome = addIncome;
+service.removeIncome = removeIncome;
  
 module.exports = service;
  
@@ -300,6 +302,57 @@ function removeExpense(_id, budgetId, expenseId) {
             { $pull: {
             "budgets.$.expenses" : {
                 _id: new ObjectID(expenseId)
+            }
+        } },
+        function (err, doc) {
+            if (err) deferred.reject(err.name + ': ' + err.message);
+
+            deferred.resolve();
+        });
+    }
+
+    return deferred.promise;
+}
+
+function addIncome(_id, budgetId, incomeParams) {
+    var deferred = Q.defer();
+
+    updateIncome();
+
+    function updateIncome() {
+        var incomeObj = {
+            "budgets.$.income": 
+                {
+                    _id: new ObjectID(),
+                    amount: incomeParams.amount,
+                    fromWhat: incomeParams.fromWhat
+                }
+        }
+        db.users.update(
+            { _id: mongo.helper.toObjectID(_id), "budgets._id": mongo.helper.toObjectID(budgetId)},
+            { 
+                $addToSet: incomeObj},
+            function (err, doc){
+                if (err) deferred.reject(err.name + ': ' + err.message);
+
+                deferred.resolve();
+            });
+    }
+
+    return deferred.promise;
+}
+
+function removeIncome(_id, budgetId, incomeId) {
+    var deferred = Q.defer();
+
+    updateIncome();
+
+    function updateIncome() {
+    db.users.update(
+        { _id: mongo.helper.toObjectID(_id), "budgets._id": mongo.helper.toObjectID(budgetId) },
+            { $pull: {
+            "budgets.$.income" : {
+                _id: new ObjectID(incomeId)
             }
         } },
         function (err, doc) {

@@ -1,7 +1,10 @@
 <div class="hero">
   <div class="budget" fxLayout="row">
-    <button *ngIf="!showAdd" (click)="showAdd = true" md-button onClick="showAdd = true;" class="white" color="accent">Add Expense +</button>
-    <div *ngIf="showAdd">
+    <div *ngIf="showButtons" class="button-container">
+      <button (click)="showAddExpense = true; showButtons = false;" md-button class="white" color="accent">Add Expense +</button>
+      <button (click)="showAddIncome = true; showButtons = false;" md-button class="white" color="accent">Add Income +</button>
+    </div>
+    <div *ngIf="showAddExpense">
       <form name="form" (ngSubmit)="f.form.valid && addExpense()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !what.valid }">
             <md-input-container><input mdInput placeholder="What" type="text" class="form-control" name="what" [(ngModel)]="model.what" #what="ngModel" required /></md-input-container>
@@ -14,6 +17,22 @@
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !amount.valid }">
             <md-input-container><input mdInput placeholder="Amount" type="text" class="form-control" name="amount" [(ngModel)]="model.amount" #amount="ngModel" required /></md-input-container>
             <div *ngIf="f.submitted && !amount.valid" class="help-block">What is the amount of this expense?</div>
+        </div>
+        <div class="form-group">
+            <button md-button class="white btn btn-primary">Create</button>
+            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </div>
+      </form>
+    </div>
+    <div *ngIf="showAddIncome">
+      <form name="form" (ngSubmit)="f.form.valid && addIncome()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !fromWhat.valid }">
+            <md-input-container><input mdInput placeholder="From what" type="text" class="form-control" name="fromWhat" [(ngModel)]="modelTwo.fromWhat" #fromWhat="ngModel" required /></md-input-container>
+            <div *ngIf="f.submitted && !fromWhat.valid" class="help-block">What is this income from?</div>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !amount.valid }">
+            <md-input-container><input mdInput placeholder="Amount" type="text" class="form-control" name="amount" [(ngModel)]="modelTwo.amount" #amount="ngModel" required /></md-input-container>
+            <div *ngIf="f.submitted && !amount.valid" class="help-block">What is the amount of this income?</div>
         </div>
         <div class="form-group">
             <button md-button class="white btn btn-primary">Create</button>
@@ -43,15 +62,16 @@
         </div>
       </div>
       <div class="income">
-        <div class="single-income" fxLayout="row">
+        <div class="single-income" fxLayout="row" *ngFor="let i of allIncome">
           <div class="left" [fxFlex]="(50 - 2)" [fxFlex.md]="(50 - 2)" fxFlex.sm="100%" fxFlex.lt-sm="100%">
-            <p >Work Paycheck</p>
+            <p >{{i.fromWhat}}</p>
           </div>
           <div class="right" [fxFlex]="(50 - 2)" [fxFlex.md]="(50 - 2)" fxFlex.sm="100%" fxFlex.lt-sm="100%">
-            <p>+ $200</p>
+            <p>+ ${{i.amount}}</p>
             <button
               md-button
               class="delete" 
+              (click)="deleteIncome(i._id, budget?._id)"
               style="color:red !important; border: solid 1px red !important;">
               Delete
             </button>
