@@ -19,9 +19,12 @@ export class BudgetDetailComponent implements OnInit {
   budget: any;
   model:any = {};
   modelTwo: any = {};
+  total: any;
+
   showAddExpense = false;
   showAddIncome = false;
   showButtons = true;
+
   currentUser = JSON.parse(localStorage.currentUser);
 
   allExpenses: Array<Expense>; 
@@ -42,6 +45,8 @@ export class BudgetDetailComponent implements OnInit {
 
             this.allExpenses = data[0].budgets[0].expenses;
             this.allIncome = data[0].budgets[0].income;
+
+            this.getTotal();
           }
         )
   }
@@ -52,6 +57,8 @@ export class BudgetDetailComponent implements OnInit {
         .subscribe(
           data => {
             this.allExpenses = data[0].budgets[0].expenses;
+
+            this.getTotal();
           }
         )
   }
@@ -62,7 +69,10 @@ export class BudgetDetailComponent implements OnInit {
         .subscribe(
           data => {
             this.allIncome = data[0].budgets[0].income;
+
+            this.getTotal();
           }
+          
         )
   }
 
@@ -122,6 +132,43 @@ export class BudgetDetailComponent implements OnInit {
 
         }
       );
+  }
+
+  getTotal() {
+    this.route.params
+      .switchMap((params: Params) => this.userService.getBudget(params['id']))
+        .subscribe(
+          data => {
+            let expenseAmounts = [];
+            let incomeAmounts = [];
+
+            this.allIncome.forEach(function(currentValue, index, array){
+              incomeAmounts.push(Number(currentValue.amount));
+            });
+
+            this.allExpenses.forEach(function(currentValue, index, array){
+              expenseAmounts.push(Number("-" + currentValue.amount));
+            });
+
+            let expenseNumber = 0;
+            let incomeNumber = 0;
+
+            expenseAmounts.forEach(function(value){
+              expenseNumber += value;
+            });
+
+            incomeAmounts.forEach(function(value){
+              incomeNumber += value;
+            });
+
+            console.log(expenseNumber);
+            console.log(incomeNumber);
+
+            this.total = expenseNumber + incomeNumber;
+
+            console.log(this.total);
+          }
+        )
   }
 
 }

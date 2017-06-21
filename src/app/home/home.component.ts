@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { LoginStatusService } from '../_services/login-status.service';
+import { AuthenticationService } from '../_services/authentication.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private authenticationService: AuthenticationService,
+    private loginStatusService: LoginStatusService) { }
 
   ngOnInit() {
+    this.authenticationService.logout();
+    this.loginStatusService.sendStatus({status: false});
   }
 
 }

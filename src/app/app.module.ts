@@ -18,8 +18,10 @@ import { customHttpProvider } from './_helpers/custom-http';
 import { AuthGuard } from './_guards/auth.guard';
 
 import {AuthenticationService } from './_services/authentication.service';
+import { LoginStatusService } from './_services/login-status.service';
 import {UserService } from './_services/user.service';
 import { BudgetDetailComponent } from './budget-detail/budget-detail.component';
+import { BackButtonComponent } from './back-button/back-button.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { BudgetDetailComponent } from './budget-detail/budget-detail.component';
     BudgetsComponent,
     GoalsComponent,
     BudgetDetailComponent,
+    BackButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import { BudgetDetailComponent } from './budget-detail/budget-detail.component';
     customHttpProvider,
     AuthenticationService,
     UserService,
+    LoginStatusService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

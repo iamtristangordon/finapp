@@ -55,4 +55,9 @@ p {
 
 .button-container > button {
     margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.total-container h2 {
+    margin: 15px auto;
 }

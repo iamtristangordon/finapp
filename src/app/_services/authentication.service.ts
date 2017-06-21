@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
+
+import { LoginStatusService } from '../_services/login-status.service';
  
 @Injectable()
 export class AuthenticationService {
-    constructor(private http: Http) { }
+    constructor(private http: Http,
+    private loginStatusService: LoginStatusService) { }
  
     login(email: string, password: string) {
         return this.http.post('/users/authenticate', { email: email, password: password })
@@ -16,7 +19,7 @@ export class AuthenticationService {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                 }
- 
+                this.loginStatusService.sendStatus({status: true});
                 return user;
             });
     }

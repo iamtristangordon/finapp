@@ -1,5 +1,5 @@
 <div class="hero">
-  
+  <app-back-button></app-back-button>
   <div class="budgets" fxLayout="row">
     <button *ngIf="!showAdd" (click)="showAdd = true" md-button onClick="showAdd = true;" class="white" color="accent">Add +</button>
     <div *ngIf="showAdd">
@@ -21,7 +21,7 @@
         class="example-margin"
         [color]="warn"
         [mode]="indeterminate"
-        [value]="70">
+        [value]="100">
       </md-progress-spinner>
     </div>
     <div class="budget-container" [fxFlex]="(60 - 2)" [fxFlex.md]="(100 / 3) - 1" fxFlex.sm="100%" fxFlex.lt-sm="100%">

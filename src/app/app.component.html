@@ -1,10 +1,13 @@
 <header>
   <div class="left">
-    <h2><a routerLink="/">Finapp</a></h2>
+    <h2>Finapp</h2>
   </div>
-  <div class="right">
+  <div *ngIf="!isLogged" class="right">
     <a routerLink="/login"><button md-button class="white">Login</button></a>
     <a routerLink="/signup"><button md-button>Sign Up</button></a>
+  </div>
+  <div *ngIf="isLogged" class="right">
+    <button (click)="logout()" md-button class="white">Logout</button>
   </div>
 </header>
 <router-outlet></router-outlet>

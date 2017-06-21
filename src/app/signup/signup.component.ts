@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
- 
+
+import { AuthenticationService } from '../_services/authentication.service'; 
 import { UserService } from '../_services/user.service';
+import { LoginStatusService } from '../_services/login-status.service';
 
 import { Budget } from '../_models/budget';
  
@@ -18,10 +20,14 @@ export class SignupComponent implements OnInit {
  
     constructor(
         private router: Router,
-        private userService: UserService) { }
+        private userService: UserService,
+        private authenticationService: AuthenticationService,
+        private loginStatusService: LoginStatusService) { }
 
     ngOnInit(): void {
-        this.model.budgets = this.budgets;
+        this.authenticationService.logout();
+        this.loginStatusService.sendStatus({status: false});
+    
     }
  
     register() {
