@@ -11,14 +11,13 @@ import { GoalsComponent } from './goals/goals.component';
 import { BudgetDetailComponent } from './budget-detail/budget-detail.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full', canActivate: [AuthGuard] },
+    { path: '', component: HomeComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'home', component: HomeComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'dashboard', component: DashboardComponent,canActivate: [AuthGuard] },
     { path: 'budgets', component: BudgetsComponent, canActivate: [AuthGuard] },
     { path: 'goals', component: GoalsComponent, canActivate: [AuthGuard] },
-    { path: 'detail/:id', component: BudgetDetailComponent },
+    { path: 'detail/:id', component: BudgetDetailComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: '/dashboard' }
 ];
 
