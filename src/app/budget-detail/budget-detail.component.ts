@@ -161,12 +161,7 @@ export class BudgetDetailComponent implements OnInit {
               incomeNumber += value;
             });
 
-            console.log(expenseNumber);
-            console.log(incomeNumber);
-
             this.total = expenseNumber + incomeNumber;
-
-            console.log(this.total);
           }
         )
   }

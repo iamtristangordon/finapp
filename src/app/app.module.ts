@@ -22,6 +22,7 @@ import { LoginStatusService } from './_services/login-status.service';
 import {UserService } from './_services/user.service';
 import { BudgetDetailComponent } from './budget-detail/budget-detail.component';
 import { BackButtonComponent } from './back-button/back-button.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { BackButtonComponent } from './back-button/back-button.component';
     GoalsComponent,
     BudgetDetailComponent,
     BackButtonComponent,
+    FeedbackComponent,
   ],
   imports: [
     BrowserModule,

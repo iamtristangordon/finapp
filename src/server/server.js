@@ -26,7 +26,7 @@ const forceSSL = function() {
 }
 // Instruct the app
 // to use the forceSSL
-// middleware
+// middleware 
 app.use(forceSSL());
 
 app.use(express.static(__dirname + '/../../dist'));

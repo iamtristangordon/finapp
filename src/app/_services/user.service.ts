@@ -59,4 +59,7 @@ export class UserService {
     deleteIncome(_id: string, budgetId:string, incomeId:string) {
         return this.http.delete('/users/income/' + _id + '/' + budgetId + '/' + incomeId);
     }
+    submitFeedback(emailObj) {
+        return this.http.post('/users/feedback', emailObj);
+    }
 }

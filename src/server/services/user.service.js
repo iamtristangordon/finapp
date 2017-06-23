@@ -1,9 +1,10 @@
 var config = require('config.json');
-var _ = require('lodash');
-var jwt = require('jsonwebtoken');
+var _      = require('lodash');
+var jwt    = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
-var Q = require('q');
-var mongo = require('mongoskin');
+var Q      = require('q');
+var mongo  = require('mongoskin');
+var helper = require('sendgrid').mail;
 
 var ObjectID = mongo.ObjectID;
 
@@ -27,6 +28,7 @@ service.addExpense = addExpense;
 service.removeExpense = removeExpense;
 service.addIncome = addIncome;
 service.removeIncome = removeIncome;
+service.submitFeedback = submitFeedback;
  
 module.exports = service;
  
@@ -134,7 +136,7 @@ function create(userParam) {
         });
  
     function createUser() {
-        // set user object to userParam without the cleartext password
+        // set user object to userParam wit hout the cleartext password
         var user = _.omit(userParam, 'password');
  
         // add hashed password to user object
@@ -272,7 +274,6 @@ function addExpense(_id, budgetId, expenseParams) {
             "budgets.$.expenses": 
                 {
                     _id: new ObjectID(),
-                    where: expenseParams.where,
                     amount: expenseParams.amount,
                     what: expenseParams.what
                 }
@@ -376,5 +377,32 @@ function _delete(_id) {
             deferred.resolve();
         });
  
+    return deferred.promise;
+}
+
+function submitFeedback(emailObj) {
+    var deferred = Q.defer();
+    
+    var from_email = new helper.Email('feedback@finapp.com');
+	var to_email = new helper.Email('trxaugmented@gmail.com');
+	var subject = "Application Feedback";
+	var content = new helper.Content('text/plain', "name: " + emailObj.name + "\n\n" + "message: " + emailObj.message);
+	var mail = new helper.Mail(from_email, subject, to_email, content);
+
+	var sg = require('sendgrid')(process.env.FINAPP_API_KEY || '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');
+	var request = sg.emptyRequest({
+		method: 'POST',
+		path: '/v3/mail/send',
+		body: mail.toJSON(),
+	});
+
+	sg.API(request, function(error, response) {
+		console.log(response.statusCode);
+		console.log(response.body);
+		console.log(response.headers);
+
+		deferred.resolve(response);
+	});
+
     return deferred.promise;
 }

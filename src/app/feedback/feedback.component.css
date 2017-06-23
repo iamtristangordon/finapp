@@ -1,0 +1,39 @@
+.hero {
+    background: white;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+	padding:80px 0px;
+    border-top: #ddd solid 1px;
+    border-bottom: #ddd solid 1px;
+}
+
+.feedback {
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.feedback-form {
+    width: 100%;
+}
+
+md-input-container {
+    width: 100%;
+    color: #F5CE28;
+}
+
+button {
+    float: right;
+}
+
+p {
+    color: #F5CE28;
+}
+
+form {
+    width: 50%;
+    margin: 0 auto;
+}

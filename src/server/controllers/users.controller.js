@@ -18,6 +18,7 @@ router.post('/expense/:_id/:budgetId', addExpense);
 router.delete('/expense/:_id/:budgetId/:expenseId', removeExpense);
 router.post('/income/:_id/:budgetId', addIncome);
 router.delete('/income/:_id/:budgetId/:incomeId', removeIncome);
+router.post('/feedback', submitFeedback);
  
 module.exports = router;
  
@@ -176,6 +177,21 @@ function removeIncome(req, res) {
     userService.removeIncome(req.params._id, req.params.budgetId, req.params.incomeId)
         .then(function () {
             res.sendStatus(200);
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
+function submitFeedback(req, res) {
+    userService.submitFeedback(req.body)
+        .then(function (data) {
+            if(data) {
+                res.send(data);
+            }
+            else {
+                res.sendStatus(400);
+            }
         })
         .catch(function (err) {
             res.status(400).send(err);
