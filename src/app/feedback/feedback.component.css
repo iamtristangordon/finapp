@@ -44,3 +44,8 @@ form {
     }
 }
 
+@media only screen and (max-width: 40.063em) { 
+    form {
+        width: 100%;
+    }
+}
