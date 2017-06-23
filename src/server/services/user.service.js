@@ -384,7 +384,7 @@ function submitFeedback(emailObj) {
     var deferred = Q.defer();
     
     var from_email = new helper.Email('feedback@finapp.com');
-	var to_email = new helper.Email('trxaugmented@gmail.com');
+	var to_email = new helper.Email('chale@knowledgebanknashville.org');
 	var subject = "Application Feedback";
 	var content = new helper.Content('text/plain', "name: " + emailObj.name + "\n\n" + "message: " + emailObj.message);
 	var mail = new helper.Mail(from_email, subject, to_email, content);

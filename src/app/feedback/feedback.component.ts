@@ -24,12 +24,14 @@ export class FeedbackComponent implements OnInit {
           if (data.status === 200) {
             this.formMessage = "Message sent.";
             this.showMessage = true;
+            this.model = {};
 
             setTimeout(() => {this.showMessage = false;}, 3000);
           }
           else {
             this.formMessage = "There was an error.";
             this.showMessage = true;
+            this.model = {};
 
             setTimeout(() => {this.showMessage = false;}, 3000);
           }
@@ -37,6 +39,7 @@ export class FeedbackComponent implements OnInit {
         error => {
           this.formMessage = "There was an error.";
           this.showMessage = true;
+          this.model = {};
 
           setTimeout(() => {this.showMessage = false;}, 3000);
         });
