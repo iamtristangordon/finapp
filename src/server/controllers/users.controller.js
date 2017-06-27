@@ -13,7 +13,7 @@ router.delete('/:_id', _delete);
 router.get('/:_id', getOne);
 router.post('/budget/:_id', addBudget);
 router.delete('/budget/:_id/:budgetId', removeBudget);
-router.get('/budget/:id', getBudget);
+router.get('/budget/:_id', getBudget);
  
 module.exports = router;
  
@@ -124,7 +124,7 @@ function removeBudget(req, res) {
 }
 
 function getBudget(req, res) {
-    userService.getBudget()
+    userService.getBudget(req.params._id)
         .then(function (budget) {
             if (budget) {
                 console.log(budget);

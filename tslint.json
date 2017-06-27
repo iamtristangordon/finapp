@@ -129,7 +129,7 @@
     "component-class-suffix": true,
     "directive-class-suffix": true,
     "no-access-missing-member": true,
-    "templates-use-public": true,
+    "templates-use-private": true,
     "invoke-injectable": true
   }
 }

@@ -1,0 +1,54 @@
+.hero {
+    background: white;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+	padding:120px 0px;
+    border-top: #ddd solid 1px;
+    border-bottom: #ddd solid 1px;
+}
+
+.budget {
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+    color: #F5CE28;
+}
+
+.title {
+    text-align: center;
+    width: 100%;
+}
+
+h1 {
+    font-weight: 400;
+}
+
+.expense {
+    color: red;
+}
+
+.single-income {
+    color: green;
+}
+
+.expense, .single-income {
+    padding: 5px 0;
+}
+
+.right {
+    text-align: right;
+}
+
+.left {
+    text-align: left;
+}
+
+p {
+    margin: 0 7px;
+    display:inline-block;
+    font-family: 'Open Sans', sans-serif;
+}
