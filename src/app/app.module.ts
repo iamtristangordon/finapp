@@ -23,6 +23,7 @@ import {UserService } from './_services/user.service';
 import { BudgetDetailComponent } from './budget-detail/budget-detail.component';
 import { BackButtonComponent } from './back-button/back-button.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
     BudgetDetailComponent,
     BackButtonComponent,
     FeedbackComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
