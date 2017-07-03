@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
         this.authenticationService.logout();
         this.loginStatusService.sendStatus({status: false});
  
-        // get return url from route parameters or default to '/'
+        // get return url from route parameters or default to '/dashboard'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
     }
  
@@ -40,7 +40,11 @@ export class LoginComponent implements OnInit {
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
-                    this.loading = false;
+                    //install alert service if contract is extended
+                    alert('There was an error logging in.');
+                    console.log(error);
                 });
+        
+        this.loading = false;
     }
 }

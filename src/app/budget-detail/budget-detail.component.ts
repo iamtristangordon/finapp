@@ -77,6 +77,19 @@ export class BudgetDetailComponent implements OnInit {
   }
 
   addExpense() {
+    //check amount to make sure it can be converted to an integer value
+    this.model.amount = this.model.amount.replace(/(?:[a-zA-Z]|\s|,|\$)+/ig,'');
+
+    //convert the string to an integer
+    this.model.amount = Number(this.model.amount);
+
+    //if the amount is NaN, alert user, and leave function
+    if(isNaN(this.model.amount)) {
+      alert('Please enter a number for the "Amount."');
+
+      return;
+    }
+
     this.route.params
       .switchMap((params: Params) => this.userService.addExpense(this.currentUser._id,params['id'], this.model))
       .subscribe(
@@ -94,6 +107,19 @@ export class BudgetDetailComponent implements OnInit {
   }
 
   addIncome() {
+    //check amount to make sure it can be converted to an integer value
+    this.modelTwo.amount = this.modelTwo.amount.replace(/(?:[a-zA-Z]|\s|,|\$)+/ig,'');
+
+    //convert the string to an integer
+    this.modelTwo.amount = Number(this.modelTwo.amount);
+
+    //if the amount is NaN, alert user, and leave function
+    if(isNaN(this.modelTwo.amount)) {
+      alert('Please enter a number for the "Amount."');
+
+      return;
+    }
+
     this.route.params
       .switchMap((params: Params) => this.userService.addIncome(this.currentUser._id,params['id'], this.modelTwo))
       .subscribe(

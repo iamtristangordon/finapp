@@ -28,7 +28,7 @@
       <h2>{{b.name}}</h2>
     </div>
     <div class="budget-container" [fxFlex]="(20 - 2)" [fxFlex.md]="(100 / 3) - 1" fxFlex.sm="100%" fxFlex.lt-sm="100%">
-      <button md-raised-button [routerLink]="['/detail', b._id]" color="accent" (click)="goToDetail(b._id)">Open</button>
+      <button md-raised-button color="accent" (click)="goToDetail(b._id)">Open</button>
       <button 
         md-button
         class="delete" 

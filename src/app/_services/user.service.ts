@@ -4,6 +4,7 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { User } from '../_models/user';
 import { Budget } from '../_models/budget';
 import { Expense } from '../_models/expense';
+import { Income } from '../_models/income';
  
 @Injectable()
 export class UserService {
@@ -52,13 +53,14 @@ export class UserService {
         return this.http.delete('/users/expense/' + _id + '/' + budgetId + '/' + expenseId);
     }
 
-    addIncome(_id: string, budgetId:string, income: Expense) {
+    addIncome(_id: string, budgetId:string, income: Income) {
         return this.http.post('/users/income/' + _id + '/' + budgetId, income);
     }
 
     deleteIncome(_id: string, budgetId:string, incomeId:string) {
         return this.http.delete('/users/income/' + _id + '/' + budgetId + '/' + incomeId);
     }
+    //maybe create feedback model?
     submitFeedback(emailObj) {
         return this.http.post('/users/feedback', emailObj);
     }
