@@ -43,8 +43,7 @@ function authenticate(email, password) {
             deferred.resolve({
                 _id: user._id,
                 email: user.email,
-                firstName: user.firstName,
-                lastName: user.lastName,
+                isAdmin: user.isAdmin || false,
                 token: jwt.sign({ sub: user._id }, config.secret)
             });
         } else {

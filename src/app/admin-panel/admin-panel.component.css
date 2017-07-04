@@ -1,0 +1,60 @@
+.hero {
+    background: white;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
+	padding:80px 0px;
+    border-top: #ddd solid 1px;
+    border-bottom: #ddd solid 1px;
+}
+
+.table {
+    display: table;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.cell h1 {
+    font-weight: 900;
+    font-size: 50px;
+    margin: 0;
+    color: white;
+}
+
+.cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+button {
+    background: #3bdc82;
+    border: none;
+    border-radius: 5px;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    margin-left: 10px;
+}
+
+.admin {
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin h2 {
+    color: black;
+    font-weight: 400;
+}
+
+div {
+    width: 100%;
+}
+
+.info {
+    text-align: center;
+}
+

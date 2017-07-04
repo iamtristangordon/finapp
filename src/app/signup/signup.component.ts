@@ -34,6 +34,7 @@ export class SignupComponent implements OnInit {
     register() {
         this.loading = true;
         this.model.email = this.model.email.toLowerCase();
+        this.model.isAdmin = false;
         console.log(this.model.email);
 
         //create the user
@@ -44,7 +45,7 @@ export class SignupComponent implements OnInit {
                 },
                 error => {
                     //install alert service if contract is extended
-                    alert('There was an error signing up');
+                    alert('There was an error signing up.');
                     console.log(error);
                 });
 
