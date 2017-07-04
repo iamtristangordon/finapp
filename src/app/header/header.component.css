@@ -8,11 +8,11 @@ header h2 {
     margin: 0;
     font-size: 28px;
     font-weight: 700;
-    color: #3bdc82;
+    color: #00e676;
 }
 
 header h2 a {
-    color: #3bdc82;
+    color: #00e676;
 }
 
 .right {
@@ -24,7 +24,7 @@ header h2 a {
 }
 
 button {
-    background: #3bdc82;
+    background: #00e676;
     border: none;
     border-radius: 3px;
     font-weight: 300;
@@ -34,7 +34,7 @@ button {
 }
 
 button:focus {
-    outline-color: #3bdc82;
+    outline-color: #00e676;
 }
 
 button:hover {
@@ -43,8 +43,8 @@ button:hover {
 
 button.white {
     background: white;
-    border: 1px solid #3bdc82;
-    color: #3bdc82;
+    border: 1px solid #00e676;
+    color: #00e676;
 }
 
 a {
