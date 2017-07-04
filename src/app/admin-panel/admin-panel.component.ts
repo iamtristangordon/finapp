@@ -14,12 +14,15 @@ export class AdminPanelComponent implements OnInit {
   allUsers: Array<User>;
   userCount: number;
   userBudgets: number;
+  userBudgetPercentage: number;
 
   constructor(
     private userService: UserService) { }
 
   ngOnInit() {
     this.getUsers();
+
+    this.userBudgetPercentage = (this.userBudgets / this.userCount);
   }
 
   getUsers() {
@@ -29,7 +32,7 @@ export class AdminPanelComponent implements OnInit {
             this.allUsers = data;
             this.userCount = data.length;
             let numBudgets = 0;
-            
+
             data.forEach((currentValue) => {
               if (currentValue.budgets) {
                 numBudgets++;
