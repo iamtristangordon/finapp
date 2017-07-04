@@ -8,8 +8,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue.
-$finapp-app-primary: mat-palette($mat-teal, A200);
-$finapp-app-accent:  mat-palette($mat-green, A200, A100, A400);
+$finapp-app-primary: mat-palette($mat-purple, A400);
+$finapp-app-accent:  mat-palette($mat-green, A400, A400, A400);
 
 // The warn palette is optional (defaults to red).
 $finapp-app-warn:    mat-palette($mat-red);
