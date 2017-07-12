@@ -29,7 +29,8 @@ export class AdminPanelComponent implements OnInit {
             this.allUsers = data;
             this.userCount = data.length;
             let numBudgets = 0;
-
+            
+            //count the number of users that have at least one budget
             data.forEach((currentValue) => {
               if (currentValue.budgets) {
                 numBudgets++;
