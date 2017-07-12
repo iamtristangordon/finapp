@@ -22,6 +22,17 @@
         </md-card-actions>
       </md-card>
     </div>
+    <div *ngIf="isAdmin" class="card-container" fxFlexOffset="25%" fxFlexOffset.lt-md="0" fx.FlexOffset.lt-sm="0" fxFlex="50%" [fxFlex.md]="(100 / 2)" fxFlex.sm="100%" fxFlex.lt-sm="100%">
+      <md-card class="example-card">
+        <md-card-content>
+          
+        </md-card-content>
+        <h2>Admin Panel</h2>
+        <md-card-actions>
+          <a md-raised-button routerLink="/admin" color="accent">Open</a>
+        </md-card-actions>
+      </md-card>
+    </div>
     <!--<div class="card-container" fxFlex="50%" [fxFlex.md]="(100 / 2)" [fxFlex.sm]="(100 / 2) - 2" fxFlex.lt-sm="100%">
       <md-card class="example-card">
         <md-card-content>

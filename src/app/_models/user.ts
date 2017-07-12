@@ -7,4 +7,5 @@ export class User {
     lastname: string;
     email: string;
     budget: Array<Budget>;
+    isAdmin: boolean;
 }

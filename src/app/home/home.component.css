@@ -33,7 +33,7 @@
 
 button {
     padding: 8px 15px;
-    background: #F5CE28;
+    background: #3bdc82;
     border: none;
     border-radius: 5px;
     font-weight: 300;
@@ -48,8 +48,8 @@ button:hover {
 
 button.white {
     background: white;
-    border: 1px solid #F5CE28;
-    color: #F5CE28;
+    border: 1px solid #3bdc82;
+    color: #3bdc82;
 }
 
 button.big {

@@ -1,6 +1,7 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './_guards/auth.guard';
+import { AdminGuard } from './_guards/admin.guard';
 
 import { LoginComponent } from './login/login.component';
 import { HomeComponent }  from './home/home.component';
@@ -10,6 +11,7 @@ import { BudgetsComponent } from './budgets/budgets.component';
 import { GoalsComponent } from './goals/goals.component';
 import { BudgetDetailComponent } from './budget-detail/budget-detail.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -20,6 +22,7 @@ const routes: Routes = [
     { path: 'goals', component: GoalsComponent, canActivate: [AuthGuard] },
     { path: 'detail/:id', component: BudgetDetailComponent, canActivate: [AuthGuard] },
     { path: 'feedback', component: FeedbackComponent, canActivate: [AuthGuard] },
+    { path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard] },
     { path: '**', redirectTo: '/dashboard' }
 ];
 

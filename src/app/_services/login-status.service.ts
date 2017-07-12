@@ -12,7 +12,7 @@ export class LoginStatusService {
 
     constructor() {}
 
-    public sendStatus (data: any) {
+    public sendStatus (data: any) { 
         if (data) {
             this.status.next(data);
         }

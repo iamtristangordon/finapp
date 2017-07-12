@@ -8,7 +8,7 @@ header h2 {
     margin: 0;
     font-size: 28px;
     font-weight: 700;
-    color: #F5CE28;
+    color: #3bdc82;
 }
 
 .hero {
@@ -69,11 +69,11 @@ form input[type="text"] {
 }
 
 form input[type="text"]:focus {
-    border: 1px solid #F5CE28;
+    border: 1px solid #3bdc82;
 }
 
 form input[type="submit"] {
-    background: #F5CE28;
+    background: #3bdc82;
     color: white;
     font-size: 14px;
     border: none;
@@ -82,7 +82,7 @@ form input[type="submit"] {
 
 button {
     padding: 8px 15px;
-    background: #F5CE28;
+    background: #3bdc82;
     border: none;
     border-radius: 5px;
     font-weight: 300;
@@ -97,8 +97,8 @@ button:hover {
 
 button.white {
     background: white;
-    border: 1px solid #F5CE28;
-    color: #F5CE28;
+    border: 1px solid #3bdc82;
+    color: #3bdc82;
 }
 
 .right {

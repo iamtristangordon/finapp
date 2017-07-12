@@ -16,19 +16,13 @@
     </div>
   </div>
   <div class="budgets" fxLayout="row" *ngFor="let b of allBudgets" fxLayoutWrap>
-    <div class="budget-container" [fxFlex]="(20 - 2)" [fxFlex.md]="(100 / 3) - 1" fxFlex.sm="100%" fxFlex.lt-sm="100%">
-      <md-progress-spinner
-        class="example-margin"
-        [color]="warn"
-        [mode]="indeterminate"
-        [value]="100">
-      </md-progress-spinner>
-    </div>
-    <div class="budget-container" [fxFlex]="(60 - 2)" [fxFlex.md]="(100 / 3) - 1" fxFlex.sm="100%" fxFlex.lt-sm="100%">
+    <div class="budget-container" [fxFlex]="(100 / 3) - 1" [fxFlex.md]="(100 / 3) - 1" fxFlex.sm="100%" fxFlex.lt-sm="100%">
       <h2>{{b.name}}</h2>
     </div>
-    <div class="budget-container" [fxFlex]="(20 - 2)" [fxFlex.md]="(100 / 3) - 1" fxFlex.sm="100%" fxFlex.lt-sm="100%">
-      <button md-raised-button [routerLink]="['/detail', b._id]" color="accent" (click)="goToDetail(b._id)">Open</button>
+    <div class="budget-container" [fxFlex]="(100 / 3) - 1" [fxFlex.md]="(100 / 3) - 1" fxFlex.sm="100%" fxFlex.lt-sm="100%">
+      <button md-raised-button color="accent" (click)="goToDetail(b._id)">Open</button>
+    </div>
+    <div class="budget-container" [fxFlex]="(100 / 3) - 1" [fxFlex.md]="(100 / 3) - 1" fxFlex.sm="100%" fxFlex.lt-sm="100%">
       <button 
         md-button
         class="delete" 

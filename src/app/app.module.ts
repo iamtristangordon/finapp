@@ -16,6 +16,7 @@ import { BudgetsComponent } from './budgets/budgets.component';
 import { GoalsComponent } from './goals/goals.component';
 import { customHttpProvider } from './_helpers/custom-http';
 import { AuthGuard } from './_guards/auth.guard';
+import { AdminGuard } from './_guards/admin.guard';
 
 import {AuthenticationService } from './_services/authentication.service';
 import { LoginStatusService } from './_services/login-status.service';
@@ -24,6 +25,7 @@ import { BudgetDetailComponent } from './budget-detail/budget-detail.component';
 import { BackButtonComponent } from './back-button/back-button.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { HeaderComponent } from './header/header.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { HeaderComponent } from './header/header.component';
     BackButtonComponent,
     FeedbackComponent,
     HeaderComponent,
+    AdminPanelComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,8 @@ import { HeaderComponent } from './header/header.component';
     AuthenticationService,
     UserService,
     LoginStatusService,
-    AuthGuard
+    AuthGuard,
+    AdminGuard
   ],
   bootstrap: [AppComponent]
 })
